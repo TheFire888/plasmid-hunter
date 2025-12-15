@@ -1,6 +1,7 @@
 import random
 from ui import Text
 from config import *
+from pygame import Rect
 
 class BattleSystem:
     def __init__(self):
@@ -15,7 +16,7 @@ class BattleSystem:
     def start_battle(self, difficulty):
         self.active = True
         self.message = "MATCH ENZYME!"
-        length = 10 + difficulty * 2
+        length = 9 + difficulty * 3
         self.timer = max(100, 600 - (difficulty * 50))
 
         bases = ["A", "T", "C", "G"]
@@ -60,15 +61,16 @@ class BattleSystem:
         
         timer_seconds = int(self.timer / 60)
         timer_color = "red" if timer_seconds <= 5 else "gold"
-        Text.draw(screen, f"{timer_seconds}", center=(WIDTH/2, 30), fontsize=30, color=timer_color, shadow=(1,1))
+        Text.draw(screen, f"{timer_seconds}", center=(WIDTH/2, 40), fontsize=30, color=timer_color, shadow=(1,1))
         
-        Text.draw(screen, self.message, center=(WIDTH/2, 80), fontsize=15, color="yellow")
+        Text.draw(screen, self.message, center=(WIDTH/2, 100), fontsize=15, color="yellow")
 
-        chunk_size = 35
+        chunk_size = 21
         chunks = [self.enemy_dna[i:i+chunk_size] for i in range(0, len(self.enemy_dna), chunk_size)]
         formatted_dna = "\n".join(chunks)
         Text.draw(screen, "VIRAL SEQUENCE:", center=(WIDTH/2, 140), fontsize=12, color="red")
-        Text.draw(screen, formatted_dna, midtop=(WIDTH/2, 200), fontsize=15, color="#ff4444")
+        dna_rect = Rect(40, 160, WIDTH - 80, 200)
+        Text.draw_textbox(screen, formatted_dna, dna_rect, color="#ff4444")
 
         section_width = WIDTH // 4
         y_pos = HEIGHT - 60
