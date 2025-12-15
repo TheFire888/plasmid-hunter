@@ -96,7 +96,7 @@ def update():
                 items.remove(item)
                 sounds.collect.play()
 
-                if len(hero.plasmids) == 100:
+                if len(hero.plasmids) == 10:
                     current_state = STATE_WIN
                     play_music("menu")
                     input_lock = 60

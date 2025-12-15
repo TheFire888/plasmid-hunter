@@ -17,7 +17,7 @@ class BattleSystem:
         self.active = True
         self.message = "MATCH ENZYME!"
         length = 9 + difficulty * 3
-        self.timer = max(100, 600 - (difficulty * 50))
+        self.timer = 240 + (difficulty * 60)
 
         bases = ["A", "T", "C", "G"]
         self.enemy_dna = "".join(random.choice(bases) for _ in range(length))
