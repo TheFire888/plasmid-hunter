@@ -177,7 +177,7 @@ def draw():
 
     elif current_state == STATE_WIN:
         screen.fill((0, 50, 0))
-        Text.draw(screen, "EVOLUTION COMPLETE!", center=(WIDTH/2, HEIGHT/2 - 20), fontsize=30, color="yellow")
+        Text.draw(screen, "YOU WIN!", center=(WIDTH/2, HEIGHT/2 - 20), fontsize=30, color="yellow")
         Text.draw(screen, "You collected all 5 Plasmids.", center=(WIDTH/2, HEIGHT/2 + 40), fontsize=15)
         Text.draw(screen, "Press SPACE to Menu", center=(WIDTH/2, HEIGHT/2 + 80), fontsize=12)
 

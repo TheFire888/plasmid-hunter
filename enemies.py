@@ -8,7 +8,7 @@ class Phage(Entity):
         super().__init__(0, 0, "phage")
         self.vx = 0
         self.vy = 0
-        self.speed = 1.5
+        self.speed = 1.0
 
         
     def update(self, target, game_map):
@@ -18,7 +18,7 @@ class Phage(Entity):
 
         move_x, move_y = 0, 0
 
-        if dist < 150:
+        if dist < 80:
             if dist > 0:
                 move_x = (dx / dist) * self.speed
                 move_y = (dy / dist) * self.speed
