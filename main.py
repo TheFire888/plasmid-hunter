@@ -92,18 +92,17 @@ def update():
         
         for item in items[:]:
             if hero.actor.colliderect(item):
-                if len(hero.plasmids) < 5:
-                    hero.plasmids.append("buff")
-                    items.remove(item)
-                    sounds.collect.play()
+                hero.plasmids.append("buff")
+                items.remove(item)
+                sounds.collect.play()
 
-                    if len(hero.plasmids) == 5:
-                        current_state = STATE_WIN
-                        play_music("menu")
-                        input_lock = 60
-                    else:
-                        level += 1
-                        start_level()
+                if len(hero.plasmids) == 10:
+                    current_state = STATE_WIN
+                    play_music("menu")
+                    input_lock = 60
+                else:
+                    level += 1
+                    start_level()
         
     elif current_state == STATE_BATTLE:
         battle_sys.update(hero, sounds) 
@@ -165,7 +164,7 @@ def draw():
         
         Text.draw(screen, f"HP: {hero.hp}", pos=(10, 10))
         Text.draw(screen, f"LVL: {level}", pos=(WIDTH-60, 10), color="yellow")
-        Text.draw(screen, f"Plasmids: {len(hero.plasmids)}/5", pos=(10, 25), color="cyan")
+        Text.draw(screen, f"Plasmids: {len(hero.plasmids)}", pos=(10, 25), color="cyan")
     
     elif current_state == STATE_BATTLE:
         battle_sys.draw(screen, hero.hp)
