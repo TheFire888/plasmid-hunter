@@ -173,11 +173,12 @@ def draw():
         screen.fill((50, 0, 0))
         Text.draw(screen, "GAME OVER", center=(WIDTH/2, HEIGHT/2), fontsize=40)
         Text.draw(screen, "Press SPACE", center=(WIDTH/2, HEIGHT/2 + 50))
+        Text.draw(screen, f"You collected {len(hero.plasmids)} Plasmids.", center=(WIDTH/2, HEIGHT/2 + 90), fontsize=15)
 
     elif current_state == STATE_WIN:
         screen.fill((0, 50, 0))
         Text.draw(screen, "YOU WIN!", center=(WIDTH/2, HEIGHT/2 - 20), fontsize=30, color="yellow")
-        Text.draw(screen, "You collected all 5 Plasmids.", center=(WIDTH/2, HEIGHT/2 + 40), fontsize=15)
+        Text.draw(screen, f"You collected all {len(hero.plasmids)} Plasmids.", center=(WIDTH/2, HEIGHT/2 + 40), fontsize=15)
         Text.draw(screen, "Press SPACE to Menu", center=(WIDTH/2, HEIGHT/2 + 80), fontsize=12)
 
 pgzrun.go()
