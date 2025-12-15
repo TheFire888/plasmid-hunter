@@ -56,10 +56,24 @@ class BattleSystem:
 
     def draw(self, screen, hero_hp):
         screen.fill((30, 0, 0))
-        Text.draw(screen, f"HP: {hero_hp}s", pos=(10, 10), color="white")
-        Text.draw(screen, f"TIMER: {int(self.timer/60)}s", pos=(WIDTH-100, 10), color="orange")
-        Text.draw(screen, f"VIRAL DNA:\n{self.enemy_dna}", pos=(50, 80), fontsize=20, color="red")
-        Text.draw(screen, self.message, center=(WIDTH/2, 40), fontsize=15, color="yellow")
+        Text.draw(screen, f"HP: {hero_hp}", pos=(20, 20), color="white", fontsize=15)
+        
+        timer_seconds = int(self.timer / 60)
+        timer_color = "red" if timer_seconds <= 5 else "gold"
+        Text.draw(screen, f"{timer_seconds}", center=(WIDTH/2, 30), fontsize=30, color=timer_color, shadow=(1,1))
+        
+        Text.draw(screen, self.message, center=(WIDTH/2, 80), fontsize=15, color="yellow")
+
+        chunk_size = 35
+        chunks = [self.enemy_dna[i:i+chunk_size] for i in range(0, len(self.enemy_dna), chunk_size)]
+        formatted_dna = "\n".join(chunks)
+        Text.draw(screen, "VIRAL SEQUENCE:", center=(WIDTH/2, 140), fontsize=12, color="red")
+        Text.draw(screen, formatted_dna, midtop=(WIDTH/2, 200), fontsize=15, color="#ff4444")
+
+        section_width = WIDTH // 4
+        y_pos = HEIGHT - 60
         
         for i, opt in enumerate(self.options):
-            Text.draw(screen, f"{i+1}: {opt}", pos=(100, 200 + i * 40), fontsize=12)
+            x_center = (i * section_width) + (section_width // 2)
+            Text.draw(screen, f"[{i+1}]", center=(x_center, y_pos), fontsize=10, color="gray")
+            Text.draw(screen, opt, center=(x_center, y_pos + 20), fontsize=18, color="white")
